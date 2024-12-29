@@ -70,4 +70,42 @@ powershell "C:\Scripts\myscript.ps1"
 
 This runs the myscript.ps1 directly.
 
+****
+In PowerShell, $_ is a special variable used within script blocks (like those passed to Where-Object, ForEach-Object, etc.) to refer to the current object in the pipeline. It represents the item being processed at that point in the loop or filter.
+
+Here's the breakdown of how $_ works:
+Common Usage:
+Where-Object { $_.Property }:
+The Where-Object cmdlet is used to filter objects in the pipeline based on a condition.
+Inside the script block {}, $_ represents the current object being processed from the pipeline.
+$_ allows you to reference the properties or methods of the current object.
+
+Consider this example with a list of files:
+
+Get-ChildItem -Path C:\Logs | Where-Object { $_.Extension -eq ".log" }
+
+Get-ChildItem gets all files and directories from the path C:\Logs.
+
+The output (the collection of files) is passed to Where-Object.
+
+Inside the Where-Object block:
+$_ refers to the current file being evaluated.
+$_.Extension retrieves the extension of the current file (.log, .txt, etc.).
+The condition $_ .Extension -eq ".log" filters the files to keep only those with the .log extension.
+****
+
+***
+In PowerShell, the use of $() (known as subexpression operator) allows you to evaluate an expression inside a string or other expressions. The reason why you see two $ signs in Write-Host $($log.FullName) is because of this mechanism.
+
+Let's break down the expression:
+
+1. $log.FullName:
+$log: This is a variable that refers to an object (in this case, probably a file or directory object).
+.FullName: This accesses the FullName property of the $log object, which returns the full path of the file or directory.
+So, $log.FullName would give you the full path of the file or folder, like C:\Logs\logfile.log.
+
+2. The $() subexpression operator:
+The $() operator allows you to evaluate an expression inside a string, and the result of that evaluation is inserted into the string.
+In other words, it’s a way of embedding a dynamic expression within a string.
+***
 

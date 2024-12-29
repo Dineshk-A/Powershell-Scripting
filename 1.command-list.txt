@@ -14,4 +14,4 @@ param(
 if(Test-Path $sourceFile)
 Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Copy-Item $sourceFile Destination $backupfile
-
+Get-PSDrive -PSProvider FileSystem
