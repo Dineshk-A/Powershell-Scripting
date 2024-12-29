@@ -1,0 +1,17 @@
+Get , Set , Select , New , Start , Stop , Copy 
+all commands i know so far , learn command u used in all your scripts 
+
+Get-ComputerInfo | Select-Object Csname , OsArchitecture
+Get-Process
+New-Item -ItemType Directory -Path "D:\filepath"
+Set-Content -Path "D:\filepath" -Value "Hello , Powershell"
+Start-Sleep -Seconds 300
+Write-Host "Hello World !"
+Stop-Computer -Force
+param(
+    [string]$sourceFile
+)
+if(Test-Path $sourceFile)
+Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+Copy-Item $sourceFile Destination $backupfile
+
