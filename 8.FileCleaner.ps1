@@ -42,4 +42,16 @@ if (Test-Path $logDirectory) {
 # AddDays(-$daysOld) subtracts $daysOld days from the current date. For example, if $daysOld = 30, this would give the date 30 days ago.
 # -lt is a comparison operator that stands for "less than". It compares the LastWriteTime of each log file with the date $daysOld days ago.
 # If the LastWriteTime is less than (earlier than) the date from $daysOld days ago, the file matches the condition.
-# So, this part of the command filters out the files that have not been modified in the last $daysOld days. It will keep only the log files whose LastWriteTime is older than $daysOld days.
+# # So, this part of the command filters out the files that have not been modified in the last $daysOld days. It will keep only the log files whose LastWriteTime is older than $daysOld days.
+
+# $oldLogs.Count:
+
+# $oldLogs is presumably an array or collection (in this case, it holds the log files that are older than $daysOld days).
+# Count is a property that returns the number of elements in the collection. So, $oldLogs.Count gives you the number of log files that matched the condition (i.e., that are older than $daysOld days).
+# -eq 0:
+
+# -eq is the "equal to" comparison operator.
+# This checks if $oldLogs.Count is equal to 0, which means there are no files in the $oldLogs collection.
+# Write-Host "No log files older than $daysOld days were found.":
+
+# If the condition $oldLogs.Count -eq 0 evaluates to true (meaning there are no old log files), the message "No log files older than $daysOld days were found." will be printed to the console.
